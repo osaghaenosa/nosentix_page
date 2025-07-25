@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Nosentix Network | Full-Service Digital Solutions</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <title>Nosentix Network | Innovative Tech Solutions</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <style>
     :root {
@@ -16,7 +16,7 @@
       --text-color: #333;
       --bg-color: #fff;
       --card-bg: #f8f9fa;
-      --transition: all 0.3s ease;
+      --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
       --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
       --radius: 12px;
     }
@@ -43,6 +43,7 @@
       color: var(--text-color);
       line-height: 1.6;
       overflow-x: hidden;
+      scroll-behavior: smooth;
     }
 
     .container {
@@ -61,6 +62,10 @@
       position: relative;
       overflow: hidden;
       padding-top: 100px;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     nav {
@@ -160,7 +165,7 @@
       background: var(--primary-color);
       color: white;
       border: none;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 30px;
       font-weight: 600;
       cursor: pointer;
@@ -168,6 +173,7 @@
       text-decoration: none;
       display: inline-block;
       font-size: 1rem;
+      box-shadow: 0 4px 15px rgba(67, 97, 238, 0.3);
     }
 
     .cta-button:hover {
@@ -182,12 +188,21 @@
       margin: 0 auto;
       position: relative;
       z-index: 2;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .hero-content.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .hero-content h1 {
       font-size: 3.5rem;
       margin-bottom: 20px;
       line-height: 1.2;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
     }
 
     .hero-content p {
@@ -196,6 +211,7 @@
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      opacity: 0.9;
     }
 
     .hero-animated-circle {
@@ -204,6 +220,12 @@
       background-color: rgba(255, 255, 255, 0.1);
       animation: float 6s infinite ease-in-out;
       z-index: 1;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .hero-animated-circle.animate {
+      opacity: 1;
     }
 
     .circle1 { width: 100px; height: 100px; top: 10%; left: 20%; }
@@ -212,19 +234,71 @@
     .circle4 { width: 120px; height: 120px; top: 20%; left: 80%; }
 
     @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
+      0% { transform: translateY(0px) scale(1); }
+      50% { transform: translateY(-20px) scale(1.05); }
+      100% { transform: translateY(0px) scale(1); }
     }
+
+    /* Animations */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .fade-in.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .slide-left {
+      opacity: 0;
+      transform: translateX(50px);
+      transition: var(--transition);
+    }
+
+    .slide-left.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .slide-right {
+      opacity: 0;
+      transform: translateX(-50px);
+      transition: var(--transition);
+    }
+
+    .slide-right.animate {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .scale-in {
+      opacity: 0;
+      transform: scale(0.8);
+      transition: var(--transition);
+    }
+
+    .scale-in.animate {
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    .delay-3 { transition-delay: 0.3s; }
+    .delay-4 { transition-delay: 0.4s; }
 
     /* Sections */
     section {
-      padding: 80px 0;
+      padding: 100px 0;
+      position: relative;
+      overflow: hidden;
     }
 
     .section-header {
       text-align: center;
-      margin-bottom: 50px;
+      margin-bottom: 70px;
     }
 
     .section-header h2 {
@@ -270,6 +344,13 @@
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
+      transform: translateY(30px);
+      opacity: 0;
+    }
+
+    .card.animate {
+      transform: translateY(0);
+      opacity: 1;
     }
 
     .card:hover {
@@ -315,6 +396,14 @@
       padding: 25px;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .chart-box.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .chart-box h3 {
@@ -340,6 +429,14 @@
       width: 200px;
       text-align: center;
       position: relative;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .process-step.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .process-step::after {
@@ -407,6 +504,13 @@
       text-align: center;
       box-shadow: var(--shadow);
       transition: var(--transition);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .team-member.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .team-member:hover {
@@ -473,6 +577,14 @@
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       text-align: center;
+      opacity: 0;
+      transform: scale(0.9);
+      transition: var(--transition);
+    }
+
+    .testimonial.animate {
+      opacity: 1;
+      transform: scale(1);
     }
 
     .testimonial-content {
@@ -533,6 +645,43 @@
       transform: scale(1.1);
     }
 
+    /* Stats Section */
+    .stats {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      text-align: center;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .stat-item {
+      padding: 30px;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: var(--transition);
+    }
+
+    .stat-number.animate {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .stat-label {
+      font-size: 1.1rem;
+      opacity: 0.9;
+    }
+
     /* Contact Section */
     .contact-container {
       display: grid;
@@ -551,6 +700,14 @@
       display: flex;
       gap: 15px;
       align-items: flex-start;
+      opacity: 0;
+      transform: translateX(-30px);
+      transition: var(--transition);
+    }
+
+    .contact-item.animate {
+      opacity: 1;
+      transform: translateX(0);
     }
 
     .contact-item i {
@@ -564,6 +721,14 @@
       padding: 30px;
       border-radius: var(--radius);
       box-shadow: var(--shadow);
+      opacity: 0;
+      transform: translateY(30px);
+      transition: var(--transition);
+    }
+
+    .contact-form.animate {
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .form-group {
@@ -694,65 +859,37 @@
       font-size: 0.9rem;
       opacity: 0.8;
     }
-    
-    /* SEO Section */
-    .seo-section {
-      background: linear-gradient(135deg, rgba(76, 201, 240, 0.05), rgba(67, 97, 238, 0.05));
-    }
-    
-    .metrics-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 25px;
-      text-align: center;
-      margin-top: 40px;
-    }
-    
-    .metric-card {
-      background: var(--card-bg);
-      padding: 25px;
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      transition: var(--transition);
-    }
-    
-    .metric-card:hover {
-      transform: scale(1.05);
-    }
-    
-    .metric-value {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--primary-color);
-      margin-bottom: 10px;
-    }
-    
-    .metric-label {
-      font-size: 1rem;
-      opacity: 0.8;
-    }
-    
-    .social-proof {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 30px;
-      margin-top: 50px;
-    }
-    
-    .social-proof-item {
+
+    /* Scroll to top button */
+    .scroll-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px;
+      height: 50px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
       display: flex;
       align-items: center;
-      gap: 15px;
-      padding: 15px 25px;
-      background: var(--card-bg);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      justify-content: center;
+      font-size: 1.5rem;
+      cursor: pointer;
+      transition: var(--transition);
+      opacity: 0;
+      visibility: hidden;
+      z-index: 100;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     }
-    
-    .social-proof-item i {
-      font-size: 2rem;
-      color: var(--primary-color);
+
+    .scroll-top.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .scroll-top:hover {
+      background: var(--secondary-color);
+      transform: translateY(-5px);
     }
 
     /* Responsive */
@@ -806,24 +943,29 @@
   </style>
 </head>
 <body>
+  <!-- Scroll to top button -->
+  <div class="scroll-top">
+    <i class="fas fa-arrow-up"></i>
+  </div>
+
   <!-- Navigation -->
   <nav>
     <div class="nav-container">
       <a href="#" class="logo">
-        <i class="bi bi-diagram-3"></i>
+        <i class="fas fa-network-wired"></i>
         <span>Nosentix</span>
       </a>
       <div class="nav-links">
         <a href="#about">About</a>
         <a href="#services">Services</a>
-        <a href="#seo">SEO</a>
-        <a href="#social">Social Media</a>
         <a href="#process">Process</a>
+        <a href="#stats">Stats</a>
+        <a href="#testimonials">Testimonials</a>
         <a href="#contact">Contact</a>
       </div>
       <div class="nav-buttons">
         <button class="toggle-btn" onclick="toggleTheme()">
-          <i class="bi bi-circle-half"></i>
+          <i class="fas fa-circle-half-stroke"></i>
         </button>
         <a href="#contact" class="cta-button">Get Started</a>
       </div>
@@ -837,8 +979,8 @@
     <div class="hero-animated-circle circle3"></div>
     <div class="hero-animated-circle circle4"></div>
     <div class="hero-content">
-      <h1>Full-Service Digital Solutions</h1>
-      <p>Your ultimate platform for tech innovation, branding excellence, and digital growth strategies</p>
+      <h1>Innovative Tech Solutions for Tomorrow</h1>
+      <p>Your ultimate platform for smart tech, creative tools, and digital empowerment. We help businesses thrive in the digital age.</p>
       <a href="#services" class="cta-button">Explore Our Services</a>
     </div>
   </header>
@@ -846,32 +988,32 @@
   <!-- About Section -->
   <section id="about">
     <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-info-circle"></i> Who We Are</h2>
+      <div class="section-header fade-in">
+        <h2><i class="fas fa-info-circle"></i> Who We Are</h2>
         <p>Nosentix is a forward-thinking tech company that builds innovative solutions for businesses and individuals</p>
       </div>
       <div class="card-grid">
-        <div class="card">
+        <div class="card fade-in delay-1">
           <div class="card-icon">
-            <i class="bi bi-lightbulb"></i>
+            <i class="fas fa-lightbulb"></i>
           </div>
           <div class="card-content">
             <h3>Our Mission</h3>
-            <p>Empower businesses with integrated digital solutions that drive growth and visibility.</p>
+            <p>Empower creators, entrepreneurs, and teams with tools and services that are beautiful, functional, and scalable.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card fade-in delay-2">
           <div class="card-icon">
-            <i class="bi bi-globe2"></i>
+            <i class="fas fa-globe-americas"></i>
           </div>
           <div class="card-content">
             <h3>Global Reach</h3>
             <p>We serve clients across 3 continents, delivering solutions that transcend geographical boundaries.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card fade-in delay-3">
           <div class="card-icon">
-            <i class="bi bi-graph-up-arrow"></i>
+            <i class="fas fa-chart-line"></i>
           </div>
           <div class="card-content">
             <h3>Growth Focused</h3>
@@ -885,164 +1027,48 @@
   <!-- Services Section -->
   <section id="services" style="background-color: var(--card-bg);">
     <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-lightning"></i> Our Services</h2>
+      <div class="section-header fade-in">
+        <h2><i class="fas fa-bolt"></i> Our Services</h2>
         <p>We offer a comprehensive suite of digital solutions to help your business thrive</p>
       </div>
       
       <div class="chart-container">
-        <div class="chart-box">
+        <div class="chart-box fade-in delay-1">
           <h3>Service Impact Analysis</h3>
           <canvas id="impactChart"></canvas>
         </div>
-        <div class="chart-box">
+        <div class="chart-box fade-in delay-2">
           <h3>Client Satisfaction</h3>
           <canvas id="satisfactionChart"></canvas>
         </div>
       </div>
       
       <div class="card-grid">
-        <div class="card">
+        <div class="card fade-in delay-1">
           <div class="card-icon">
-            <i class="bi bi-search"></i>
+            <i class="fas fa-cloud"></i>
           </div>
           <div class="card-content">
-            <h3>SEO Services</h3>
-            <p>Boost your visibility with our comprehensive search engine optimization strategies.</p>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-              <li>Keyword research & strategy</li>
-              <li>On-page optimization</li>
-              <li>Technical SEO audits</li>
-              <li>Content optimization</li>
-            </ul>
+            <h3>SaaS Solutions</h3>
+            <p>Tools for email campaigns, landing pages, and CRM systems that integrate seamlessly with your workflow.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card fade-in delay-2">
           <div class="card-icon">
-            <i class="bi bi-palette"></i>
+            <i class="fas fa-palette"></i>
           </div>
           <div class="card-content">
-            <h3>Branding</h3>
-            <p>Create a powerful brand identity that resonates with your audience.</p>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-              <li>Brand strategy development</li>
-              <li>Logo & visual identity</li>
-              <li>Brand guidelines</li>
-              <li>Rebranding services</li>
-            </ul>
+            <h3>Design & Branding</h3>
+            <p>UI/UX, logos, templates, and full visual identity packs that make your brand stand out.</p>
           </div>
         </div>
-        <div class="card">
+        <div class="card fade-in delay-3">
           <div class="card-icon">
-            <i class="bi bi-people"></i>
+            <i class="fas fa-robot"></i>
           </div>
           <div class="card-content">
-            <h3>Social Media Management</h3>
-            <p>Engage your audience with strategic social media campaigns.</p>
-            <ul style="margin-top: 10px; padding-left: 20px;">
-              <li>Content strategy & creation</li>
-              <li>Community management</li>
-              <li>Performance analytics</li>
-              <li>Influencer partnerships</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- SEO Section -->
-  <section id="seo" class="seo-section">
-    <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-graph-up"></i> SEO Results That Matter</h2>
-        <p>Our proven strategies deliver measurable results for your business</p>
-      </div>
-      
-      <div class="metrics-grid">
-        <div class="metric-card">
-          <div class="metric-value">87%</div>
-          <div class="metric-label">Increase in Organic Traffic</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">4.2x</div>
-          <div class="metric-label">Higher Conversion Rates</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">65%</div>
-          <div class="metric-label">Reduced Bounce Rate</div>
-        </div>
-        <div class="metric-card">
-          <div class="metric-value">92%</div>
-          <div class="metric-label">Client Retention Rate</div>
-        </div>
-      </div>
-      
-      <div class="chart-box" style="margin-top: 50px;">
-        <h3>SEO Growth Timeline</h3>
-        <canvas id="seoChart"></canvas>
-      </div>
-    </div>
-  </section>
-
-  <!-- Social Media Section -->
-  <section id="social" style="background-color: var(--card-bg);">
-    <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-megaphone"></i> Social Media Excellence</h2>
-        <p>We amplify your brand's voice across all social platforms</p>
-      </div>
-      
-      <div class="card-grid">
-        <div class="card">
-          <div class="card-icon">
-            <i class="bi bi-facebook"></i>
-          </div>
-          <div class="card-content">
-            <h3>Facebook Strategy</h3>
-            <p>Targeted campaigns to reach your ideal audience on the world's largest social network.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <i class="bi bi-instagram"></i>
-          </div>
-          <div class="card-content">
-            <h3>Instagram Growth</h3>
-            <p>Visually compelling content that drives engagement and builds community.</p>
-          </div>
-        </div>
-        <div class="card">
-          <div class="card-icon">
-            <i class="bi bi-linkedin"></i>
-          </div>
-          <div class="card-content">
-            <h3>LinkedIn Authority</h3>
-            <p>Position your brand as an industry leader in the professional space.</p>
-          </div>
-        </div>
-      </div>
-      
-      <div class="social-proof">
-        <div class="social-proof-item">
-          <i class="bi bi-arrow-up-right-circle"></i>
-          <div>
-            <div class="metric-value">320%</div>
-            <div class="metric-label">Average Engagement Growth</div>
-          </div>
-        </div>
-        <div class="social-proof-item">
-          <i class="bi bi-people-fill"></i>
-          <div>
-            <div class="metric-value">1.2M+</div>
-            <div class="metric-label">Audience Reached Monthly</div>
-          </div>
-        </div>
-        <div class="social-proof-item">
-          <i class="bi bi-chat-left-text"></i>
-          <div>
-            <div class="metric-value">78%</div>
-            <div class="metric-label">Response Rate Improvement</div>
+            <h3>AI & Content</h3>
+            <p>From AI video to prompt libraries and creative storytelling - we make content creation effortless.</p>
           </div>
         </div>
       </div>
@@ -1052,43 +1078,72 @@
   <!-- Process Section -->
   <section id="process">
     <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-diagram-3"></i> Our Process</h2>
+      <div class="section-header fade-in">
+        <h2><i class="fas fa-sitemap"></i> Our Process</h2>
         <p>How we solve complex problems and deliver exceptional solutions</p>
       </div>
       
       <div class="process-container">
-        <div class="process-step">
+        <div class="process-step fade-in delay-1">
           <div class="step-icon">
-            <i class="bi bi-search"></i>
+            <i class="fas fa-search"></i>
           </div>
           <div class="step-number">1</div>
           <h3>Discover</h3>
           <p>We deeply understand your challenges and goals</p>
         </div>
-        <div class="process-step">
+        <div class="process-step fade-in delay-2">
           <div class="step-icon">
-            <i class="bi bi-lightbulb"></i>
+            <i class="fas fa-lightbulb"></i>
           </div>
           <div class="step-number">2</div>
-          <h3>Strategize</h3>
-          <p>Create customized solutions for your brand</p>
+          <h3>Ideate</h3>
+          <p>Creative solutions tailored to your specific needs</p>
         </div>
-        <div class="process-step">
+        <div class="process-step fade-in delay-3">
           <div class="step-icon">
-            <i class="bi bi-code-slash"></i>
+            <i class="fas fa-code"></i>
           </div>
           <div class="step-number">3</div>
-          <h3>Implement</h3>
-          <p>Execute with precision across all channels</p>
+          <h3>Develop</h3>
+          <p>Agile development with continuous feedback</p>
         </div>
-        <div class="process-step">
+        <div class="process-step fade-in delay-4">
           <div class="step-icon">
-            <i class="bi bi-graph-up"></i>
+            <i class="fas fa-rocket"></i>
           </div>
           <div class="step-number">4</div>
-          <h3>Optimize</h3>
-          <p>Continuously refine based on performance data</p>
+          <h3>Launch</h3>
+          <p>Deployment and ongoing optimization</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Stats Section -->
+  <section id="stats" class="stats">
+    <div class="container">
+      <div class="section-header fade-in">
+        <h2>Our Impact in Numbers</h2>
+        <p>Measuring success through tangible results and client achievements</p>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number" id="clientsCount">0</div>
+          <div class="stat-label">Satisfied Clients</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="projectsCount">0</div>
+          <div class="stat-label">Projects Completed</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="growthCount">0</div>
+          <div class="stat-label">Avg. Growth Rate</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number" id="supportCount">0</div>
+          <div class="stat-label">Support Hours</div>
         </div>
       </div>
     </div>
@@ -1097,8 +1152,8 @@
   <!-- Testimonials Section -->
   <section id="testimonials" class="testimonials">
     <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-chat-quote"></i> Client Testimonials</h2>
+      <div class="section-header fade-in">
+        <h2><i class="fas fa-comments"></i> Client Testimonials</h2>
         <p>Hear what our clients have to say about working with us</p>
       </div>
       
@@ -1106,27 +1161,27 @@
         <div class="testimonial-slider" id="testimonialSlider">
           <div class="testimonial">
             <div class="testimonial-content">
-              "Nosentix transformed our digital presence. Their SEO strategy tripled our organic traffic in just 6 months. The team is knowledgeable, responsive, and truly invested in our success."
+              Nosentix transformed our digital presence. Their SaaS tools are not only powerful but incredibly intuitive. Our team productivity has increased by 40% since implementation.
             </div>
             <div class="testimonial-author">- David Kim, TechLead Innovations</div>
           </div>
           <div class="testimonial">
             <div class="testimonial-content">
-              "The branding package we received was exceptional. They captured our vision perfectly and delivered beyond our expectations. Our customer engagement has doubled since the rebrand!"
+              The branding package we received was exceptional. They captured our vision perfectly and delivered beyond our expectations. Our customer engagement has doubled!
             </div>
             <div class="testimonial-author">- Maria Rodriguez, Bloom Cosmetics</div>
           </div>
           <div class="testimonial">
             <div class="testimonial-content">
-              "Our social media engagement skyrocketed after partnering with Nosentix. They developed a comprehensive strategy that aligned perfectly with our brand voice and business objectives."
+              As a startup, we needed solutions that could scale with our growth. Nosentix provided exactly that - flexible, powerful, and cost-effective tools that grow with our business.
             </div>
             <div class="testimonial-author">- James Wilson, Startup Founder</div>
           </div>
         </div>
         
         <div class="testimonial-nav">
-          <button id="prevTestimonial"><i class="bi bi-arrow-left"></i></button>
-          <button id="nextTestimonial"><i class="bi bi-arrow-right"></i></button>
+          <button id="prevTestimonial"><i class="fas fa-arrow-left"></i></button>
+          <button id="nextTestimonial"><i class="fas fa-arrow-right"></i></button>
         </div>
       </div>
     </div>
@@ -1135,36 +1190,36 @@
   <!-- Contact Section -->
   <section id="contact">
     <div class="container">
-      <div class="section-header">
-        <h2><i class="bi bi-envelope"></i> Get In Touch</h2>
+      <div class="section-header fade-in">
+        <h2><i class="fas fa-envelope"></i> Get In Touch</h2>
         <p>Ready to transform your business? Let's start a conversation</p>
       </div>
       
       <div class="contact-container">
         <div class="contact-info">
-          <div class="contact-item">
-            <i class="bi bi-geo-alt"></i>
+          <div class="contact-item fade-in delay-1">
+            <i class="fas fa-map-marker-alt"></i>
             <div>
               <h3>Our Location</h3>
-              <p>123 Innovation Drive, Tech City<br>Digital District, 10001</p>
+              <p>24 Illogbo Road, Ojo LGA<br>Lagos state, Nigeria</p>
             </div>
           </div>
-          <div class="contact-item">
-            <i class="bi bi-telephone"></i>
+          <div class="contact-item fade-in delay-2">
+            <i class="fas fa-phone-alt"></i>
             <div>
               <h3>Phone</h3>
-              <p>+1 (555) 123-4567</p>
+              <p>+234 (903) 027-5188</p>
             </div>
           </div>
-          <div class="contact-item">
-            <i class="bi bi-envelope"></i>
+          <div class="contact-item fade-in delay-3">
+            <i class="fas fa-envelope"></i>
             <div>
               <h3>Email</h3>
-              <p>hello@nosentix.network</p>
+              <p>nosentix_network@gmail.com</p>
             </div>
           </div>
-          <div class="contact-item">
-            <i class="bi bi-clock"></i>
+          <div class="contact-item fade-in delay-4">
+            <i class="fas fa-clock"></i>
             <div>
               <h3>Working Hours</h3>
               <p>Monday - Friday: 9AM - 6PM</p>
@@ -1172,7 +1227,7 @@
           </div>
         </div>
         
-        <div class="contact-form">
+        <div class="contact-form fade-in">
           <form id="contactForm">
             <div class="form-group">
               <label for="name">Full Name</label>
@@ -1183,15 +1238,8 @@
               <input type="email" id="email" required>
             </div>
             <div class="form-group">
-              <label for="service">Service Interest</label>
-              <select id="service" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; background: var(--bg-color); color: var(--text-color);">
-                <option value="">Select a Service</option>
-                <option value="seo">SEO Services</option>
-                <option value="branding">Branding</option>
-                <option value="social">Social Media Management</option>
-                <option value="saas">SaaS Solutions</option>
-                <option value="design">Design Services</option>
-              </select>
+              <label for="subject">Subject</label>
+              <input type="text" id="subject" required>
             </div>
             <div class="form-group">
               <label for="message">Your Message</label>
@@ -1210,47 +1258,45 @@
       <div class="footer-content">
         <div class="footer-column">
           <h3>Nosentix Network</h3>
-          <p>Innovative digital solutions for businesses and individuals. Empowering growth through technology and creativity.</p>
-          <div class="social-icons" style="margin-top: 20px;">
-            <a href="#"><i class="bi bi-facebook"></i></a>
-            <a href="#"><i class="bi bi-twitter"></i></a>
-            <a href="#"><i class="bi bi-linkedin"></i></a>
-            <a href="#"><i class="bi bi-instagram"></i></a>
-            <a href="#"><i class="bi bi-youtube"></i></a>
-          </div>
-        </div>
-        <div class="footer-column">
-          <h3>Services</h3>
-          <ul class="footer-links">
-            <li><a href="#services"><i class="bi bi-arrow-right"></i> SEO Services</a></li>
-            <li><a href="#services"><i class="bi bi-arrow-right"></i> Branding & Identity</a></li>
-            <li><a href="#social"><i class="bi bi-arrow-right"></i> Social Media Management</a></li>
-            <li><a href="#services"><i class="bi bi-arrow-right"></i> SaaS Solutions</a></li>
-            <li><a href="#services"><i class="bi bi-arrow-right"></i> Design & Development</a></li>
-          </ul>
+          <p>Innovative tech solutions for businesses and individuals. Empowering digital transformation through creativity and technology.</p>
         </div>
         <div class="footer-column">
           <h3>Quick Links</h3>
           <ul class="footer-links">
-            <li><a href="#about"><i class="bi bi-arrow-right"></i> About Us</a></li>
-            <li><a href="#process"><i class="bi bi-arrow-right"></i> Our Process</a></li>
-            <li><a href="#testimonials"><i class="bi bi-arrow-right"></i> Testimonials</a></li>
-            <li><a href="#"><i class="bi bi-arrow-right"></i> Case Studies</a></li>
-            <li><a href="#contact"><i class="bi bi-arrow-right"></i> Contact</a></li>
+            <li><a href="#about"><i class="fas fa-arrow-right"></i> About Us</a></li>
+            <li><a href="#services"><i class="fas fa-arrow-right"></i> Services</a></li>
+            <li><a href="#process"><i class="fas fa-arrow-right"></i> Our Process</a></li>
+            <li><a href="#testimonials"><i class="fas fa-arrow-right"></i> Testimonials</a></li>
+            <li><a href="#contact"><i class="fas fa-arrow-right"></i> Contact</a></li>
           </ul>
         </div>
         <div class="footer-column">
-          <h3>Newsletter</h3>
-          <p>Subscribe to our newsletter for digital insights and updates</p>
-          <div style="display: flex; margin-top: 20px;">
-            <input type="email" placeholder="Your email" style="flex-grow: 1; padding: 12px 15px; border: none; border-radius: 30px 0 0 30px; background: rgba(255,255,255,0.2); color: white;">
-            <button style="background: var(--accent-color); color: white; border: none; padding: 0 20px; border-radius: 0 30px 30px 0; cursor: pointer;">Subscribe</button>
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="#"><i class="fas fa-arrow-right"></i> SaaS Solutions</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right"></i> Design & Branding</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right"></i> AI & Content</a></li>
+            <li><a href="#"><i class="fas fa-arrow-right"></i> Market Tools</a></li>
+          </ul>
+        </div>
+        <div class="footer-column social-column">
+          <h3>Follow Us</h3>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-github"></i></a>
           </div>
-          <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.7;">We respect your privacy. Unsubscribe at any time.</p>
+          <p>Subscribe to our newsletter for updates</p>
+          <div style="display: flex; margin-top: 10px;">
+            <input type="email" placeholder="Your email" style="flex-grow: 1; padding: 10px; border: none; border-radius: 30px 0 0 30px;">
+            <button style="background: var(--accent-color); color: white; border: none; padding: 0 20px; border-radius: 0 30px 30px 0; cursor: pointer;">Go</button>
+          </div>
         </div>
       </div>
       <div class="copyright">
-        &copy; 2023 Nosentix Network. All rights reserved. | Digital Solutions for the Modern World
+        &copy; 2023 Nosentix Network. All rights reserved.
       </div>
     </div>
   </footer>
@@ -1263,11 +1309,62 @@
     }
     document.documentElement.setAttribute("data-theme", "light");
 
+    // Initialize Intersection Observer for animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('animate');
+          
+          // Special handling for stats counter
+          if (entry.target.classList.contains('stat-number')) {
+            const target = +entry.target.getAttribute('data-target');
+            const duration = 2000;
+            const startTime = performance.now();
+            
+            const updateCount = (timestamp) => {
+              const progress = Math.min((timestamp - startTime) / duration, 1);
+              const value = Math.floor(progress * target);
+              entry.target.textContent = value.toLocaleString();
+              
+              if (progress < 1) {
+                requestAnimationFrame(updateCount);
+              } else {
+                entry.target.textContent = target.toLocaleString();
+              }
+            };
+            
+            requestAnimationFrame(updateCount);
+          }
+        }
+      });
+    }, {
+      threshold: 0.1,
+      rootMargin: '0px 0px -50px 0px'
+    });
+
+    // Observe elements
+    document.querySelectorAll('.fade-in, .slide-left, .slide-right, .scale-in, .hero-animated-circle, .card, .chart-box, .process-step, .team-member, .stat-number, .contact-item, .contact-form').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Observe hero content separately
+    const heroContent = document.querySelector('.hero-content');
+    observer.observe(heroContent);
+    
+    // Observe circles
+    document.querySelectorAll('.hero-animated-circle').forEach(circle => {
+      observer.observe(circle);
+    });
+
     // Testimonial slider
     let currentTestimonial = 0;
     const testimonials = document.querySelectorAll('.testimonial');
     const slider = document.getElementById('testimonialSlider');
-    const testimonialWidth = testimonials[0].offsetWidth;
+    
+    // Initialize testimonials as observable
+    testimonials.forEach(testimonial => {
+      observer.observe(testimonial);
+    });
     
     document.getElementById('nextTestimonial').addEventListener('click', () => {
       currentTestimonial = (currentTestimonial + 1) % testimonials.length;
@@ -1296,118 +1393,21 @@
       this.reset();
     });
     
-    // Initialize charts
-    document.addEventListener('DOMContentLoaded', function() {
-      // Service Impact Chart
-      const impactCtx = document.getElementById('impactChart').getContext('2d');
-      new Chart(impactCtx, {
-        type: 'bar',
-        data: {
-          labels: ['SEO', 'Branding', 'Social Media', 'SaaS', 'Design', 'AI'],
-          datasets: [{
-            label: 'Business Impact',
-            data: [92, 88, 85, 90, 87, 83],
-            backgroundColor: [
-              'rgba(67, 97, 238, 0.7)',
-              'rgba(58, 12, 163, 0.7)',
-              'rgba(76, 201, 240, 0.7)',
-              'rgba(72, 149, 239, 0.7)',
-              'rgba(86, 11, 173, 0.7)',
-              'rgba(64, 81, 181, 0.7)'
-            ],
-            borderColor: [
-              'rgb(67, 97, 238)',
-              'rgb(58, 12, 163)',
-              'rgb(76, 201, 240)',
-              'rgb(72, 149, 239)',
-              'rgb(86, 11, 173)',
-              'rgb(64, 81, 181)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true,
-              max: 100,
-              ticks: {
-                callback: function(value) {
-                  return value + '%';
-                }
-              }
-            }
-          }
-        }
-      });
-      
-      // Satisfaction Chart
-      const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
-      new Chart(satisfactionCtx, {
-        type: 'doughnut',
-        data: {
-          labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Unsatisfied'],
-          datasets: [{
-            label: 'Client Satisfaction',
-            data: [72, 23, 4, 1],
-            backgroundColor: [
-              'rgba(67, 97, 238, 0.8)',
-              'rgba(72, 149, 239, 0.8)',
-              'rgba(76, 201, 240, 0.8)',
-              'rgba(255, 99, 132, 0.8)'
-            ],
-            borderColor: [
-              'rgb(67, 97, 238)',
-              'rgb(72, 149, 239)',
-              'rgb(76, 201, 240)',
-              'rgb(255, 99, 132)'
-            ],
-            borderWidth: 1
-          }]
-        },
-        options: {
-          responsive: true,
-          plugins: {
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }
-      });
-      
-      // SEO Chart
-      const seoCtx = document.getElementById('seoChart').getContext('2d');
-      new Chart(seoCtx, {
-        type: 'line',
-        data: {
-          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
-          datasets: [{
-            label: 'Organic Traffic',
-            data: [1200, 1900, 3000, 5000, 7000, 9000, 11000],
-            borderColor: 'rgba(67, 97, 238, 1)',
-            backgroundColor: 'rgba(67, 97, 238, 0.1)',
-            borderWidth: 3,
-            fill: true,
-            tension: 0.3
-          }, {
-            label: 'Keyword Rankings',
-            data: [50, 120, 300, 600, 1200, 1800, 2500],
-            borderColor: 'rgba(76, 201, 240, 1)',
-            backgroundColor: 'rgba(76, 201, 240, 0.1)',
-            borderWidth: 3,
-            fill: true,
-            tension: 0.3
-          }]
-        },
-        options: {
-          responsive: true,
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
+    // Scroll to top button
+    const scrollTopBtn = document.querySelector('.scroll-top');
+    
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        scrollTopBtn.classList.add('visible');
+      } else {
+        scrollTopBtn.classList.remove('visible');
+      }
+    });
+    
+    scrollTopBtn.addEventListener('click', () => {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
       });
     });
     
@@ -1436,6 +1436,108 @@
         nav.style.boxShadow = 'none';
       }
     });
+    
+    // Initialize charts only when in view
+    const chartObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          initCharts();
+          chartObserver.disconnect();
+        }
+      });
+    }, { threshold: 0.1 });
+    
+    chartObserver.observe(document.getElementById('services'));
+    
+    function initCharts() {
+      // Service Impact Chart
+      const impactCtx = document.getElementById('impactChart').getContext('2d');
+      new Chart(impactCtx, {
+        type: 'bar',
+        data: {
+          labels: ['SaaS Solutions', 'Design & Branding', 'AI & Content', 'Market Tools'],
+          datasets: [{
+            label: 'Business Impact',
+            data: [85, 78, 92, 80],
+            backgroundColor: [
+              'rgba(67, 97, 238, 0.7)',
+              'rgba(58, 12, 163, 0.7)',
+              'rgba(76, 201, 240, 0.7)',
+              'rgba(72, 149, 239, 0.7)'
+            ],
+            borderColor: [
+              'rgb(67, 97, 238)',
+              'rgb(58, 12, 163)',
+              'rgb(76, 201, 240)',
+              'rgb(72, 149, 239)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: {
+            duration: 2000,
+            easing: 'easeOutQuart'
+          },
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      // Satisfaction Chart
+      const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
+      new Chart(satisfactionCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Unsatisfied'],
+          datasets: [{
+            label: 'Client Satisfaction',
+            data: [65, 25, 7, 3],
+            backgroundColor: [
+              'rgba(67, 97, 238, 0.8)',
+              'rgba(72, 149, 239, 0.8)',
+              'rgba(76, 201, 240, 0.8)',
+              'rgba(255, 99, 132, 0.8)'
+            ],
+            borderColor: [
+              'rgb(67, 97, 238)',
+              'rgb(72, 149, 239)',
+              'rgb(76, 201, 240)',
+              'rgb(255, 99, 132)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          animation: {
+            duration: 2000,
+            easing: 'easeOutQuart'
+          },
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+    }
+    
+    // Initialize stats counters
+    document.getElementById('clientsCount').setAttribute('data-target', '25');
+    document.getElementById('projectsCount').setAttribute('data-target', '28');
+    document.getElementById('growthCount').setAttribute('data-target', '78');
+    document.getElementById('supportCount').setAttribute('data-target', '500');
   </script>
 </body>
 </html>
