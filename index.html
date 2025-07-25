@@ -1,0 +1,1441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nosentix Network | Full-Service Digital Solutions</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    :root {
+      --primary-color: #4361ee;
+      --secondary-color: #3a0ca3;
+      --accent-color: #4cc9f0;
+      --light-color: #f8f9fa;
+      --dark-color: #121212;
+      --text-color: #333;
+      --bg-color: #fff;
+      --card-bg: #f8f9fa;
+      --transition: all 0.3s ease;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      --radius: 12px;
+    }
+
+    [data-theme="dark"] {
+      --primary-color: #4895ef;
+      --secondary-color: #3f37c9;
+      --accent-color: #4cc9f0;
+      --text-color: #eee;
+      --bg-color: #121212;
+      --card-bg: #1e1e1e;
+      --shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-color);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header & Navigation */
+    header {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 80px 20px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      padding-top: 100px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      padding: 15px 0;
+      transition: var(--transition);
+    }
+
+    [data-theme="dark"] nav {
+      background-color: rgba(30, 30, 30, 0.95);
+    }
+
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .logo i {
+      font-size: 2rem;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+      position: relative;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: -5px;
+      left: 0;
+      width: 0;
+      height: 2px;
+      background-color: var(--primary-color);
+      transition: var(--transition);
+    }
+
+    .nav-links a:hover::after {
+      width: 100%;
+    }
+
+    .nav-buttons {
+      display: flex;
+      gap: 15px;
+      align-items: center;
+    }
+
+    .toggle-btn {
+      background-color: transparent;
+      color: var(--text-color);
+      border: none;
+      padding: 8px 12px;
+      cursor: pointer;
+      border-radius: 8px;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .toggle-btn:hover {
+      background-color: rgba(67, 97, 238, 0.1);
+    }
+
+    .cta-button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 30px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1rem;
+    }
+
+    .cta-button:hover {
+      background: var(--secondary-color);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+    /* Hero Section */
+    .hero-content {
+      max-width: 800px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-content h1 {
+      font-size: 3.5rem;
+      margin-bottom: 20px;
+      line-height: 1.2;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      margin-bottom: 30px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-animated-circle {
+      position: absolute;
+      border-radius: 50%;
+      background-color: rgba(255, 255, 255, 0.1);
+      animation: float 6s infinite ease-in-out;
+      z-index: 1;
+    }
+
+    .circle1 { width: 100px; height: 100px; top: 10%; left: 20%; }
+    .circle2 { width: 150px; height: 150px; top: 50%; left: 70%; }
+    .circle3 { width: 80px; height: 80px; top: 70%; left: 10%; }
+    .circle4 { width: 120px; height: 120px; top: 20%; left: 80%; }
+
+    @keyframes float {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+      100% { transform: translateY(0px); }
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 0;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .section-header h2 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      position: relative;
+      display: inline-block;
+    }
+
+    .section-header h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    .section-header p {
+      max-width: 700px;
+      margin: 20px auto 0;
+      font-size: 1.1rem;
+      color: var(--text-color);
+      opacity: 0.8;
+    }
+
+    /* Cards */
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: var(--transition);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-icon {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    }
+
+    .card-icon i {
+      font-size: 2.5rem;
+      color: white;
+    }
+
+    .card-content {
+      padding: 25px;
+      flex-grow: 1;
+    }
+
+    .card-content h3 {
+      margin-bottom: 15px;
+      font-size: 1.4rem;
+    }
+
+    /* Charts */
+    .chart-container {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .chart-box {
+      flex: 1;
+      min-width: 300px;
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .chart-box h3 {
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    canvas {
+      width: 100% !important;
+      height: 300px !important;
+    }
+
+    /* Process Section */
+    .process-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+
+    .process-step {
+      width: 200px;
+      text-align: center;
+      position: relative;
+    }
+
+    .process-step::after {
+      content: '→';
+      position: absolute;
+      top: 70px;
+      right: -30px;
+      font-size: 2rem;
+      color: var(--primary-color);
+      opacity: 0.5;
+    }
+
+    .process-step:last-child::after {
+      display: none;
+    }
+
+    .step-icon {
+      width: 120px;
+      height: 120px;
+      background: var(--card-bg);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .process-step:hover .step-icon {
+      background: var(--primary-color);
+      color: white;
+      transform: scale(1.05);
+    }
+
+    .step-number {
+      position: absolute;
+      top: -10px;
+      right: 0;
+      width: 30px;
+      height: 30px;
+      background: var(--primary-color);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+    }
+
+    /* Team Section */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+      margin-top: 40px;
+    }
+
+    .team-member {
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      overflow: hidden;
+      text-align: center;
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+
+    .team-member:hover {
+      transform: translateY(-10px);
+    }
+
+    .member-image {
+      height: 250px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .member-info {
+      padding: 20px;
+    }
+
+    .member-info h3 {
+      margin-bottom: 5px;
+    }
+
+    .member-info p.position {
+      color: var(--primary-color);
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+    }
+
+    .social-links a {
+      color: var(--text-color);
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-links a:hover {
+      color: var(--primary-color);
+    }
+
+    /* Testimonials */
+    .testimonials {
+      background: linear-gradient(135deg, rgba(67, 97, 238, 0.05), rgba(58, 12, 163, 0.05));
+      position: relative;
+      overflow: hidden;
+    }
+
+    .testimonial-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    .testimonial-slider {
+      display: flex;
+      transition: transform 0.5s ease;
+    }
+
+    .testimonial {
+      min-width: 100%;
+      padding: 40px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+
+    .testimonial-content {
+      font-size: 1.2rem;
+      font-style: italic;
+      margin-bottom: 30px;
+      position: relative;
+    }
+
+    .testimonial-content::before,
+    .testimonial-content::after {
+      content: '"';
+      font-size: 3rem;
+      color: var(--primary-color);
+      opacity: 0.2;
+      position: absolute;
+    }
+
+    .testimonial-content::before {
+      top: -20px;
+      left: -10px;
+    }
+
+    .testimonial-content::after {
+      bottom: -40px;
+      right: -10px;
+    }
+
+    .testimonial-author {
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    .testimonial-nav {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 30px;
+    }
+
+    .testimonial-nav button {
+      background: var(--primary-color);
+      color: white;
+      border: none;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .testimonial-nav button:hover {
+      background: var(--secondary-color);
+      transform: scale(1.1);
+    }
+
+    /* Contact Section */
+    .contact-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      align-items: center;
+    }
+
+    .contact-info {
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+    }
+
+    .contact-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .contact-item i {
+      font-size: 1.5rem;
+      color: var(--primary-color);
+      margin-top: 5px;
+    }
+
+    .contact-form {
+      background: var(--card-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 500;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: var(--bg-color);
+      color: var(--text-color);
+      font-family: inherit;
+      transition: var(--transition);
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+    }
+
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, var(--secondary-color), var(--primary-color));
+      color: white;
+      padding: 60px 0 30px;
+    }
+
+    .footer-content {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 40px;
+      margin-bottom: 40px;
+    }
+
+    .footer-column h3 {
+      font-size: 1.4rem;
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-column h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 50px;
+      height: 3px;
+      background: white;
+    }
+
+    .footer-links {
+      list-style: none;
+    }
+
+    .footer-links li {
+      margin-bottom: 12px;
+    }
+
+    .footer-links a {
+      color: rgba(255, 255, 255, 0.8);
+      text-decoration: none;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .footer-links a:hover {
+      color: white;
+      transform: translateX(5px);
+    }
+
+    .footer-links a i {
+      font-size: 0.9rem;
+    }
+
+    .social-column {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .social-icons {
+      display: flex;
+      gap: 15px;
+    }
+
+    .social-icons a {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      color: white;
+      font-size: 1.2rem;
+      transition: var(--transition);
+    }
+
+    .social-icons a:hover {
+      background: white;
+      color: var(--primary-color);
+      transform: translateY(-5px);
+    }
+
+    .copyright {
+      text-align: center;
+      padding-top: 30px;
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+      font-size: 0.9rem;
+      opacity: 0.8;
+    }
+    
+    /* SEO Section */
+    .seo-section {
+      background: linear-gradient(135deg, rgba(76, 201, 240, 0.05), rgba(67, 97, 238, 0.05));
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 25px;
+      text-align: center;
+      margin-top: 40px;
+    }
+    
+    .metric-card {
+      background: var(--card-bg);
+      padding: 25px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      transition: var(--transition);
+    }
+    
+    .metric-card:hover {
+      transform: scale(1.05);
+    }
+    
+    .metric-value {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      margin-bottom: 10px;
+    }
+    
+    .metric-label {
+      font-size: 1rem;
+      opacity: 0.8;
+    }
+    
+    .social-proof {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 30px;
+      margin-top: 50px;
+    }
+    
+    .social-proof-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      padding: 15px 25px;
+      background: var(--card-bg);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+    
+    .social-proof-item i {
+      font-size: 2rem;
+      color: var(--primary-color);
+    }
+
+    /* Responsive */
+    @media (max-width: 992px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links {
+        display: none;
+      }
+      
+      .hero-content h1 {
+        font-size: 2.3rem;
+      }
+      
+      .section-header h2 {
+        font-size: 2rem;
+      }
+      
+      .process-step::after {
+        display: none;
+      }
+      
+      .process-container {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .process-step {
+        width: 100%;
+        max-width: 300px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .chart-container {
+        flex-direction: column;
+      }
+      
+      .hero-content h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation -->
+  <nav>
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="bi bi-diagram-3"></i>
+        <span>Nosentix</span>
+      </a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#seo">SEO</a>
+        <a href="#social">Social Media</a>
+        <a href="#process">Process</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-buttons">
+        <button class="toggle-btn" onclick="toggleTheme()">
+          <i class="bi bi-circle-half"></i>
+        </button>
+        <a href="#contact" class="cta-button">Get Started</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header>
+    <div class="hero-animated-circle circle1"></div>
+    <div class="hero-animated-circle circle2"></div>
+    <div class="hero-animated-circle circle3"></div>
+    <div class="hero-animated-circle circle4"></div>
+    <div class="hero-content">
+      <h1>Full-Service Digital Solutions</h1>
+      <p>Your ultimate platform for tech innovation, branding excellence, and digital growth strategies</p>
+      <a href="#services" class="cta-button">Explore Our Services</a>
+    </div>
+  </header>
+
+  <!-- About Section -->
+  <section id="about">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-info-circle"></i> Who We Are</h2>
+        <p>Nosentix is a forward-thinking tech company that builds innovative solutions for businesses and individuals</p>
+      </div>
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-lightbulb"></i>
+          </div>
+          <div class="card-content">
+            <h3>Our Mission</h3>
+            <p>Empower businesses with integrated digital solutions that drive growth and visibility.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-globe2"></i>
+          </div>
+          <div class="card-content">
+            <h3>Global Reach</h3>
+            <p>We serve clients across 3 continents, delivering solutions that transcend geographical boundaries.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-graph-up-arrow"></i>
+          </div>
+          <div class="card-content">
+            <h3>Growth Focused</h3>
+            <p>Our solutions are designed to grow with your business, adapting to your evolving needs.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Section -->
+  <section id="services" style="background-color: var(--card-bg);">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-lightning"></i> Our Services</h2>
+        <p>We offer a comprehensive suite of digital solutions to help your business thrive</p>
+      </div>
+      
+      <div class="chart-container">
+        <div class="chart-box">
+          <h3>Service Impact Analysis</h3>
+          <canvas id="impactChart"></canvas>
+        </div>
+        <div class="chart-box">
+          <h3>Client Satisfaction</h3>
+          <canvas id="satisfactionChart"></canvas>
+        </div>
+      </div>
+      
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-search"></i>
+          </div>
+          <div class="card-content">
+            <h3>SEO Services</h3>
+            <p>Boost your visibility with our comprehensive search engine optimization strategies.</p>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+              <li>Keyword research & strategy</li>
+              <li>On-page optimization</li>
+              <li>Technical SEO audits</li>
+              <li>Content optimization</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-palette"></i>
+          </div>
+          <div class="card-content">
+            <h3>Branding</h3>
+            <p>Create a powerful brand identity that resonates with your audience.</p>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+              <li>Brand strategy development</li>
+              <li>Logo & visual identity</li>
+              <li>Brand guidelines</li>
+              <li>Rebranding services</li>
+            </ul>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-people"></i>
+          </div>
+          <div class="card-content">
+            <h3>Social Media Management</h3>
+            <p>Engage your audience with strategic social media campaigns.</p>
+            <ul style="margin-top: 10px; padding-left: 20px;">
+              <li>Content strategy & creation</li>
+              <li>Community management</li>
+              <li>Performance analytics</li>
+              <li>Influencer partnerships</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SEO Section -->
+  <section id="seo" class="seo-section">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-graph-up"></i> SEO Results That Matter</h2>
+        <p>Our proven strategies deliver measurable results for your business</p>
+      </div>
+      
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-value">87%</div>
+          <div class="metric-label">Increase in Organic Traffic</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">4.2x</div>
+          <div class="metric-label">Higher Conversion Rates</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">65%</div>
+          <div class="metric-label">Reduced Bounce Rate</div>
+        </div>
+        <div class="metric-card">
+          <div class="metric-value">92%</div>
+          <div class="metric-label">Client Retention Rate</div>
+        </div>
+      </div>
+      
+      <div class="chart-box" style="margin-top: 50px;">
+        <h3>SEO Growth Timeline</h3>
+        <canvas id="seoChart"></canvas>
+      </div>
+    </div>
+  </section>
+
+  <!-- Social Media Section -->
+  <section id="social" style="background-color: var(--card-bg);">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-megaphone"></i> Social Media Excellence</h2>
+        <p>We amplify your brand's voice across all social platforms</p>
+      </div>
+      
+      <div class="card-grid">
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-facebook"></i>
+          </div>
+          <div class="card-content">
+            <h3>Facebook Strategy</h3>
+            <p>Targeted campaigns to reach your ideal audience on the world's largest social network.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-instagram"></i>
+          </div>
+          <div class="card-content">
+            <h3>Instagram Growth</h3>
+            <p>Visually compelling content that drives engagement and builds community.</p>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-icon">
+            <i class="bi bi-linkedin"></i>
+          </div>
+          <div class="card-content">
+            <h3>LinkedIn Authority</h3>
+            <p>Position your brand as an industry leader in the professional space.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="social-proof">
+        <div class="social-proof-item">
+          <i class="bi bi-arrow-up-right-circle"></i>
+          <div>
+            <div class="metric-value">320%</div>
+            <div class="metric-label">Average Engagement Growth</div>
+          </div>
+        </div>
+        <div class="social-proof-item">
+          <i class="bi bi-people-fill"></i>
+          <div>
+            <div class="metric-value">1.2M+</div>
+            <div class="metric-label">Audience Reached Monthly</div>
+          </div>
+        </div>
+        <div class="social-proof-item">
+          <i class="bi bi-chat-left-text"></i>
+          <div>
+            <div class="metric-value">78%</div>
+            <div class="metric-label">Response Rate Improvement</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process Section -->
+  <section id="process">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-diagram-3"></i> Our Process</h2>
+        <p>How we solve complex problems and deliver exceptional solutions</p>
+      </div>
+      
+      <div class="process-container">
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="bi bi-search"></i>
+          </div>
+          <div class="step-number">1</div>
+          <h3>Discover</h3>
+          <p>We deeply understand your challenges and goals</p>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="bi bi-lightbulb"></i>
+          </div>
+          <div class="step-number">2</div>
+          <h3>Strategize</h3>
+          <p>Create customized solutions for your brand</p>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="bi bi-code-slash"></i>
+          </div>
+          <div class="step-number">3</div>
+          <h3>Implement</h3>
+          <p>Execute with precision across all channels</p>
+        </div>
+        <div class="process-step">
+          <div class="step-icon">
+            <i class="bi bi-graph-up"></i>
+          </div>
+          <div class="step-number">4</div>
+          <h3>Optimize</h3>
+          <p>Continuously refine based on performance data</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section id="testimonials" class="testimonials">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-chat-quote"></i> Client Testimonials</h2>
+        <p>Hear what our clients have to say about working with us</p>
+      </div>
+      
+      <div class="testimonial-container">
+        <div class="testimonial-slider" id="testimonialSlider">
+          <div class="testimonial">
+            <div class="testimonial-content">
+              "Nosentix transformed our digital presence. Their SEO strategy tripled our organic traffic in just 6 months. The team is knowledgeable, responsive, and truly invested in our success."
+            </div>
+            <div class="testimonial-author">- David Kim, TechLead Innovations</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-content">
+              "The branding package we received was exceptional. They captured our vision perfectly and delivered beyond our expectations. Our customer engagement has doubled since the rebrand!"
+            </div>
+            <div class="testimonial-author">- Maria Rodriguez, Bloom Cosmetics</div>
+          </div>
+          <div class="testimonial">
+            <div class="testimonial-content">
+              "Our social media engagement skyrocketed after partnering with Nosentix. They developed a comprehensive strategy that aligned perfectly with our brand voice and business objectives."
+            </div>
+            <div class="testimonial-author">- James Wilson, Startup Founder</div>
+          </div>
+        </div>
+        
+        <div class="testimonial-nav">
+          <button id="prevTestimonial"><i class="bi bi-arrow-left"></i></button>
+          <button id="nextTestimonial"><i class="bi bi-arrow-right"></i></button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact">
+    <div class="container">
+      <div class="section-header">
+        <h2><i class="bi bi-envelope"></i> Get In Touch</h2>
+        <p>Ready to transform your business? Let's start a conversation</p>
+      </div>
+      
+      <div class="contact-container">
+        <div class="contact-info">
+          <div class="contact-item">
+            <i class="bi bi-geo-alt"></i>
+            <div>
+              <h3>Our Location</h3>
+              <p>123 Innovation Drive, Tech City<br>Digital District, 10001</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-telephone"></i>
+            <div>
+              <h3>Phone</h3>
+              <p>+1 (555) 123-4567</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-envelope"></i>
+            <div>
+              <h3>Email</h3>
+              <p>hello@nosentix.network</p>
+            </div>
+          </div>
+          <div class="contact-item">
+            <i class="bi bi-clock"></i>
+            <div>
+              <h3>Working Hours</h3>
+              <p>Monday - Friday: 9AM - 6PM</p>
+            </div>
+          </div>
+        </div>
+        
+        <div class="contact-form">
+          <form id="contactForm">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" required>
+            </div>
+            <div class="form-group">
+              <label for="service">Service Interest</label>
+              <select id="service" style="width: 100%; padding: 12px 15px; border: 1px solid #ddd; border-radius: 8px; background: var(--bg-color); color: var(--text-color);">
+                <option value="">Select a Service</option>
+                <option value="seo">SEO Services</option>
+                <option value="branding">Branding</option>
+                <option value="social">Social Media Management</option>
+                <option value="saas">SaaS Solutions</option>
+                <option value="design">Design Services</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Your Message</label>
+              <textarea id="message" required></textarea>
+            </div>
+            <button type="submit" class="cta-button" style="width: 100%;">Send Message</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-column">
+          <h3>Nosentix Network</h3>
+          <p>Innovative digital solutions for businesses and individuals. Empowering growth through technology and creativity.</p>
+          <div class="social-icons" style="margin-top: 20px;">
+            <a href="#"><i class="bi bi-facebook"></i></a>
+            <a href="#"><i class="bi bi-twitter"></i></a>
+            <a href="#"><i class="bi bi-linkedin"></i></a>
+            <a href="#"><i class="bi bi-instagram"></i></a>
+            <a href="#"><i class="bi bi-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-column">
+          <h3>Services</h3>
+          <ul class="footer-links">
+            <li><a href="#services"><i class="bi bi-arrow-right"></i> SEO Services</a></li>
+            <li><a href="#services"><i class="bi bi-arrow-right"></i> Branding & Identity</a></li>
+            <li><a href="#social"><i class="bi bi-arrow-right"></i> Social Media Management</a></li>
+            <li><a href="#services"><i class="bi bi-arrow-right"></i> SaaS Solutions</a></li>
+            <li><a href="#services"><i class="bi bi-arrow-right"></i> Design & Development</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Quick Links</h3>
+          <ul class="footer-links">
+            <li><a href="#about"><i class="bi bi-arrow-right"></i> About Us</a></li>
+            <li><a href="#process"><i class="bi bi-arrow-right"></i> Our Process</a></li>
+            <li><a href="#testimonials"><i class="bi bi-arrow-right"></i> Testimonials</a></li>
+            <li><a href="#"><i class="bi bi-arrow-right"></i> Case Studies</a></li>
+            <li><a href="#contact"><i class="bi bi-arrow-right"></i> Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-column">
+          <h3>Newsletter</h3>
+          <p>Subscribe to our newsletter for digital insights and updates</p>
+          <div style="display: flex; margin-top: 20px;">
+            <input type="email" placeholder="Your email" style="flex-grow: 1; padding: 12px 15px; border: none; border-radius: 30px 0 0 30px; background: rgba(255,255,255,0.2); color: white;">
+            <button style="background: var(--accent-color); color: white; border: none; padding: 0 20px; border-radius: 0 30px 30px 0; cursor: pointer;">Subscribe</button>
+          </div>
+          <p style="margin-top: 15px; font-size: 0.9rem; opacity: 0.7;">We respect your privacy. Unsubscribe at any time.</p>
+        </div>
+      </div>
+      <div class="copyright">
+        &copy; 2023 Nosentix Network. All rights reserved. | Digital Solutions for the Modern World
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Theme toggle
+    function toggleTheme() {
+      const current = document.documentElement.getAttribute("data-theme");
+      document.documentElement.setAttribute("data-theme", current === "dark" ? "light" : "dark");
+    }
+    document.documentElement.setAttribute("data-theme", "light");
+
+    // Testimonial slider
+    let currentTestimonial = 0;
+    const testimonials = document.querySelectorAll('.testimonial');
+    const slider = document.getElementById('testimonialSlider');
+    const testimonialWidth = testimonials[0].offsetWidth;
+    
+    document.getElementById('nextTestimonial').addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateSlider();
+    });
+    
+    document.getElementById('prevTestimonial').addEventListener('click', () => {
+      currentTestimonial = (currentTestimonial - 1 + testimonials.length) % testimonials.length;
+      updateSlider();
+    });
+    
+    function updateSlider() {
+      slider.style.transform = `translateX(-${currentTestimonial * 100}%)`;
+    }
+    
+    // Auto slide testimonials
+    setInterval(() => {
+      currentTestimonial = (currentTestimonial + 1) % testimonials.length;
+      updateSlider();
+    }, 5000);
+    
+    // Form submission
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      alert('Thank you for your message! We will get back to you soon.');
+      this.reset();
+    });
+    
+    // Initialize charts
+    document.addEventListener('DOMContentLoaded', function() {
+      // Service Impact Chart
+      const impactCtx = document.getElementById('impactChart').getContext('2d');
+      new Chart(impactCtx, {
+        type: 'bar',
+        data: {
+          labels: ['SEO', 'Branding', 'Social Media', 'SaaS', 'Design', 'AI'],
+          datasets: [{
+            label: 'Business Impact',
+            data: [92, 88, 85, 90, 87, 83],
+            backgroundColor: [
+              'rgba(67, 97, 238, 0.7)',
+              'rgba(58, 12, 163, 0.7)',
+              'rgba(76, 201, 240, 0.7)',
+              'rgba(72, 149, 239, 0.7)',
+              'rgba(86, 11, 173, 0.7)',
+              'rgba(64, 81, 181, 0.7)'
+            ],
+            borderColor: [
+              'rgb(67, 97, 238)',
+              'rgb(58, 12, 163)',
+              'rgb(76, 201, 240)',
+              'rgb(72, 149, 239)',
+              'rgb(86, 11, 173)',
+              'rgb(64, 81, 181)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              max: 100,
+              ticks: {
+                callback: function(value) {
+                  return value + '%';
+                }
+              }
+            }
+          }
+        }
+      });
+      
+      // Satisfaction Chart
+      const satisfactionCtx = document.getElementById('satisfactionChart').getContext('2d');
+      new Chart(satisfactionCtx, {
+        type: 'doughnut',
+        data: {
+          labels: ['Very Satisfied', 'Satisfied', 'Neutral', 'Unsatisfied'],
+          datasets: [{
+            label: 'Client Satisfaction',
+            data: [72, 23, 4, 1],
+            backgroundColor: [
+              'rgba(67, 97, 238, 0.8)',
+              'rgba(72, 149, 239, 0.8)',
+              'rgba(76, 201, 240, 0.8)',
+              'rgba(255, 99, 132, 0.8)'
+            ],
+            borderColor: [
+              'rgb(67, 97, 238)',
+              'rgb(72, 149, 239)',
+              'rgb(76, 201, 240)',
+              'rgb(255, 99, 132)'
+            ],
+            borderWidth: 1
+          }]
+        },
+        options: {
+          responsive: true,
+          plugins: {
+            legend: {
+              position: 'bottom'
+            }
+          }
+        }
+      });
+      
+      // SEO Chart
+      const seoCtx = document.getElementById('seoChart').getContext('2d');
+      new Chart(seoCtx, {
+        type: 'line',
+        data: {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul'],
+          datasets: [{
+            label: 'Organic Traffic',
+            data: [1200, 1900, 3000, 5000, 7000, 9000, 11000],
+            borderColor: 'rgba(67, 97, 238, 1)',
+            backgroundColor: 'rgba(67, 97, 238, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.3
+          }, {
+            label: 'Keyword Rankings',
+            data: [50, 120, 300, 600, 1200, 1800, 2500],
+            borderColor: 'rgba(76, 201, 240, 1)',
+            backgroundColor: 'rgba(76, 201, 240, 0.1)',
+            borderWidth: 3,
+            fill: true,
+            tension: 0.3
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true
+            }
+          }
+        }
+      });
+    });
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          window.scrollTo({
+            top: target.offsetTop - 80,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    // Navbar scroll effect
+    window.addEventListener('scroll', function() {
+      const nav = document.querySelector('nav');
+      if (window.scrollY > 50) {
+        nav.style.padding = '10px 0';
+        nav.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+      } else {
+        nav.style.padding = '15px 0';
+        nav.style.boxShadow = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
